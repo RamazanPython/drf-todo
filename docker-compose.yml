@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: compose/postgres/Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data
+  redis:
+    build:
+      context: .
+      dockerfile: compose/redis/Dockerfile
+  celery:
+    container_name: todo_celery
+    build:
+      context: .
+    command: celery -A config worker -l info
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - .env
+  web:
+    build: .
+    entrypoint: ./entrypoint.sh
+    volumes:
+      - media_files:/app/media
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    restart: always
+
+volumes:
+  local_postgres_data:
+  media_files:

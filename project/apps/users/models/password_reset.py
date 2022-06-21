@@ -14,7 +14,7 @@ def password_reset_token_created(
         reset_password_token: ResetPasswordToken,
         *args,
         **kwargs
-):
+) -> None:
     user = reset_password_token.user
     send_password_reset_email_task.apply_async(
         kwargs={

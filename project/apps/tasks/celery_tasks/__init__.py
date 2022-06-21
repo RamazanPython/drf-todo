@@ -1,1 +1,1 @@
-from .tasks import send_email_task
+from .tasks import send_task_is_done_email_task

@@ -1,1 +1,1 @@
-from .user import send_password_reset
+from .user import send_password_reset_email_task

@@ -16,7 +16,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(api_patterns)),
     # Apps
-    path('tasks/', include('tasks.api.v1.urls')),
+    path('todo/', include('tasks.api.v1.urls')),
     path('users/', include('users.api.v1.urls'))
 ]
 

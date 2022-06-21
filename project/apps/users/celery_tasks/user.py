@@ -9,7 +9,7 @@ from users.models import User
 
 
 @shared_task()
-def send_password_reset(user_id: int) -> None:
+def send_password_reset_email_task(user_id: int) -> None:
     try:
         user = User.objects.get(pk=user_id)
         reset_password_token = ResetPasswordToken.objects.filter(user=user).first()

@@ -4,7 +4,7 @@ from django_rest_passwordreset.models import ResetPasswordToken
 
 from typing import Any
 
-from users.celery_tasks import send_password_reset
+from users.celery_tasks import send_password_reset_email_task
 
 
 @receiver(reset_password_token_created)
@@ -16,7 +16,7 @@ def password_reset_token_created(
         **kwargs
 ):
     user = reset_password_token.user
-    send_password_reset.apply_async(
+    send_password_reset_email_task.apply_async(
         kwargs={
             'user_id': user.pk,
         }

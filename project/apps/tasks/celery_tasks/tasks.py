@@ -7,7 +7,7 @@ from users.models import User
 
 
 @shared_task()
-def send_email_task(user_id: int, task_id: int) -> None:
+def send_task_is_done_email_task(user_id: int, task_id: int) -> None:
     try:
         user = User.objects.get(pk=user_id)
         task = Task.objects.get(pk=task_id)

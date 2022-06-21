@@ -13,8 +13,6 @@ RUN apt-get update \
   && apt-get install -y libpq-dev \
   # gunicorn installation \
   && apt-get install -y gunicorn \
-  # Install opencv python dependencies
-  && apt-get install ffmpeg libsm6 libxext6  -y \
   # Translations dependencies
   && apt-get install -y gettext \
   # cleaning up unused files
@@ -37,4 +35,4 @@ RUN chmod +x ./entrypoint.sh
 COPY ./project/ .
 
 
-#ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
